@@ -6,6 +6,7 @@ import {
   ValidationPipe,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
@@ -28,5 +29,9 @@ export class UsersController {
   @Delete(':username')
   delete(@Param('username') username: string) {
     return this.usersService.delete(username);
+  }
+  @Put(':username')
+  update(@Param('username') username: string) {
+    return this.usersService.update(username);
   }
 }

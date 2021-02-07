@@ -34,4 +34,13 @@ export class UsersService {
     this.userModel.deleteOne({ username }).exec();
     return user;
   }
+  async update(username: string) {
+    const user = await this.userModel.findOne({ username });
+    if (!user) {
+      throw new NotFoundException('Could not find user');
+    }
+    user.username = 'tom';
+    user.save();
+    return user;
+  }
 }
