@@ -5,6 +5,7 @@ import {
   Get,
   ValidationPipe,
   Param,
+  Delete,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
@@ -23,5 +24,9 @@ export class UsersController {
   @Post()
   create(@Body(ValidationPipe) createUser: CreateUserDto) {
     return this.usersService.create(createUser);
+  }
+  @Delete(':username')
+  delete(@Param('username') username: string) {
+    return this.usersService.delete(username);
   }
 }

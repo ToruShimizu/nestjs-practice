@@ -26,4 +26,12 @@ export class UsersService {
     }
     return user;
   }
+  async delete(username: string) {
+    const user = await this.userModel.findOne({ username }).exec();
+    if (!user) {
+      throw new NotFoundException('Could not find user');
+    }
+    this.userModel.deleteOne({ username }).exec();
+    return user;
+  }
 }
