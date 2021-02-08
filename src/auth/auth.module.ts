@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
       /** 本番環境では長くする。人に公開しない */
       secret: 'secret',
       /** 有効期限 */
-      signOptions: {},
+      signOptions: { expiresIn: '1h' },
     }),
     UsersModule,
   ],
