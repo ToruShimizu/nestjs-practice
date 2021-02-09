@@ -22,24 +22,21 @@ export class UsersService {
   }
   async findOne(username: string) {
     const user = await this.userModel.findOne({ username }).exec();
-    if (!user) {
-      throw new NotFoundException('Could not find user');
-    }
+    if (!user) throw new NotFoundException('Could not find user');
+
     return user;
   }
   async delete(username: string) {
     const user = await this.userModel.findOne({ username }).exec();
-    if (!user) {
-      throw new NotFoundException('Could not find user');
-    }
+    if (!user) throw new NotFoundException('Could not find user');
+
     this.userModel.deleteOne({ username }).exec();
     return user;
   }
   async update(username: string) {
     const user = await this.userModel.findOne({ username });
-    if (!user) {
-      throw new NotFoundException('Could not find user');
-    }
+    if (!user) throw new NotFoundException('Could not find user');
+
     user.username = 'tom';
     user.save();
     return user;

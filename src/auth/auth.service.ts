@@ -12,17 +12,14 @@ export class AuthService {
   ) {}
   async validateUser({ username, password }: CreateUserDto) {
     const user = await this.usersService.findOne(username);
-    console.log(password);
-    console.log(user.password);
-
     const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-      throw new UnauthorizedException('Invalid credentials');
-    }
+
+    if (!isValid) throw new UnauthorizedException('Invalid credentials');
+
     return isValid;
   }
   async login(user: CreateUserDto) {
-    if (this.validateUser(user)) {
+    if (await this.validateUser(user)) {
       const payload = { username: user.username };
       return {
         access_token: this.jwtService.sign(payload),
