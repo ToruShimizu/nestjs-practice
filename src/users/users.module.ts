@@ -5,9 +5,14 @@ import { UsersService } from './users.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
+  //** UsersServiceで使うことができる */
   imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+
   controllers: [UsersController],
+
   providers: [UsersService],
+
+  //** providersのにあるクラス、またはimportsしたクラスしかexportsできない */
   exports: [UsersService],
 })
 export class UsersModule {}

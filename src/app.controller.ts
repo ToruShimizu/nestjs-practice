@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  /**  */
+  //** ベタで書くとこのようになる */
   // @Get('hello')
   // getHello() {
   //   const appService = new AppService()
@@ -15,5 +15,5 @@ export class AppController {
     return this.appService.getHello();
   }
 }
-/** serviceの＠Injectableとmoduleのprovidersにより内部的にはこうなっている */
+//** serviceの＠Injectableとmoduleのprovidersにより内部的にはこうなっている */
 // new AppController(new AppService());

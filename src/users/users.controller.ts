@@ -21,20 +21,27 @@ export class UsersController {
   findAll() {
     return this.usersService.findAll();
   }
+
   @Get(':username')
   @UseGuards(AuthGuard('jwt'))
+
+  // ** @Paramでusernameを受け取る*/
   findOne(@Param('username') username: string, @Request() req: any) {
-    /** トークンを持ったユーザー */
+    // ** トークンを持ったユーザー */
     return req.user;
   }
+
   @Post()
+  //** bodyの値がCreateUserDtoのルールと合っているかチェックする */
   create(@Body(ValidationPipe) createUser: CreateUserDto) {
     return this.usersService.create(createUser);
   }
+
   @Delete(':username')
   delete(@Param('username') username: string) {
     return this.usersService.delete(username);
   }
+
   @Put(':username')
   update(@Param('username') username: string) {
     return this.usersService.update(username);

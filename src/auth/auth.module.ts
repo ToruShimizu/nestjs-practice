@@ -7,15 +7,18 @@ import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports: [
+    //** importして設定を入れておく */
     JwtModule.register({
-      /** 本番環境では長くする。人に公開しない */
+      //** パスワードを暗号化する。本番環境では長くする。人に公開しない */
       secret: 'secret',
-      /** 有効期限 */
+      //* 有効期限 */
       signOptions: { expiresIn: '1h' },
     }),
     UsersModule,
   ],
+
   controllers: [AuthController],
+
   providers: [AuthService, JwtStrategy],
 })
 export class AuthModule {}

@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     UsersModule,
+    //** mongodbから持ってくる */
     MongooseModule.forRoot(
       'mongodb+srv://trs:tt1234@cluster0.xh4zm.mongodb.net/nest?retryWrites=true&w=majority',
     ),
