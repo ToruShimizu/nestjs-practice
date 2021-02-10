@@ -17,3 +17,8 @@ import { AuthModule } from './auth/auth.module';
   providers: [AppService],
 })
 export class AppModule {}
+
+new AppModule();
+
+const appService = new AppService();
+new AppController(appService);
